@@ -39,11 +39,11 @@ LL _merge(LL start, LL mid, LL end)
 		}
 		else
 		{
-			inv_count = inv_count + sizeL - l +1; /// L is sorted R[r] is lesser then L[l] Means all in L after index l are greater then 
-			                                       /// R[r]  so all will contribute i Inverstion count so increment it based on the no left in L array
+			/// L is sorted array now if R[r] is lesser then L[l] Means R[r] is also lesser then all remaining numbers
+			//  in L aray after l index , so all remaining (including no at l index) will contribute in Inversion count... 
+			inv_count = inv_count + sizeL - l +1; 
 			arr[i++] = R[r++];
-			//inv_count++;
-			
+			//inv_count++;			
 		}
 	}
 	while (l <= sizeL )
