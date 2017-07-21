@@ -1,4 +1,8 @@
 #if 1
+/*
+Problem : http://www.spoj.com/problems/HISTOGRA/
+Get Largest rectangle from the Histogram.
+*/
 #include <iostream>
 #include <cstdio>
 using namespace std;
