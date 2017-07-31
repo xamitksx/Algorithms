@@ -1,4 +1,3 @@
-
 /*
 Problem : http://www.spoj.com/problems/KGSS/
 Algorithm : Segment Tree.
@@ -70,23 +69,23 @@ void create_seg_tree(LL start, LL end, LL segIndex)
 	segTree[segIndex] = getMAX(segTree[LEFT(segIndex)], segTree[RIGHT(segIndex)]);
 }
 
-_SEGTREE_NODE query_Seg_tree(LL range_start, LL range_end, LL in_start, LL in_end, LL segIndex)
+_SEGTREE_NODE query_Seg_tree(LL qLow, LL qHi, LL segLo, LL segHi, LL segIndex)
 {
-	if (range_end < in_start || range_start  > in_end) // out of range
+	if (qHi < segLo || qLow  > segHi) // out of range
 	{
 		_SEGTREE_NODE temp;
 		temp.maxVal1 = temp.maxVal2 = 0;
 		return temp;
 	}
-	else if (range_start <= in_start  &&   range_end >= in_end)   //complete OVERLAP  our input is completly overlapped by input  also covers EXACT match case
+	else if (qLow <= segLo  &&   qHi >= segHi)   //complete OVERLAP  our input is completly overlapped by input  also covers EXACT match case
 	{
 		return segTree[segIndex];
 	}
 	else
 	{
-		LL mid = (in_start + in_end) / 2;
-		_SEGTREE_NODE a = query_Seg_tree(range_start, range_end, in_start, mid, LEFT(segIndex));
-		_SEGTREE_NODE b = query_Seg_tree(range_start, range_end, mid + 1, in_end, RIGHT(segIndex));
+		LL mid = (segLo + segHi) / 2;
+		_SEGTREE_NODE a = query_Seg_tree(qLow, qHi, segLo, mid, LEFT(segIndex));
+		_SEGTREE_NODE b = query_Seg_tree(qLow, qHi, mid + 1, segHi, RIGHT(segIndex));
 		_SEGTREE_NODE temp = getMAX(a, b);
 		return temp;
 	}
@@ -144,6 +143,6 @@ int  main()
 		}
 
 	}
-	return 0;
 }
 #endif
+
